@@ -1,5 +1,6 @@
 export TERM="xterm-256color"
 export OTHER=$HOME/.zsh
+export OTHER=.zsh
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME="powerlevel9k/powerlevel9k"
 source $OTHER/powerlevel_settings.sh
@@ -25,4 +26,4 @@ if [ -d "$HOME/.zsh-custom" ]; then
     fi
   done
 fi
- autoload -Uz compinit && compinit -i
+autoload -Uz compinit && compinit -i
