@@ -12,7 +12,7 @@ plugins=(git docker)
 export EDITOR=nano
 export JAVA_HOME=
 
-for f in $OTHER/*; do
+for f in $OTHER/*.zsh; do
   if [ -f $f ]; then
     source $f
   fi
