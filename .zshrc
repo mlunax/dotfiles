@@ -5,7 +5,7 @@ export ZSH_THEME="powerlevel9k/powerlevel9k"
 source $OTHER/powerlevel_settings.sh
 source $ZSH/oh-my-zsh.sh
 
-COMPLETION_WAITING_DOTS="true"
+#COMPLETION_WAITING_DOTS="false"
 
 plugins=(git docker)
 
