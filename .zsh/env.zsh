@@ -1,3 +1,3 @@
 # Set Devs Tools
-# [] = {flutter}
+# [] = {flutter, go}
 export devTools=""
