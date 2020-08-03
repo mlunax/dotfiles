@@ -16,7 +16,13 @@ if [ ! -d "${HOME}/.oh-my-zsh/custom/themes/powerlevel9k" ]; then
   git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 fi
 if [ -d "${HOME}/.zsh" ]; then
-  rm -r $HOME/.zsh
+  rm -rf $HOME/.zsh
 fi
-cp -r .zsh $HOME
+cp -r .zsh/ $HOME
+if [ -n "${devTools}" ]; then
+  sed -i "s%export devTools=\"\"%export devTools=\"$devTools\"%g" $HOME/.zsh/env.zsh
+fi
+if [ -n "${GOPATH}" ]; then
+  sed -i "s%\#export GOPATH=\"\"%export GOPATH=\"$GOPATH\"%g" $HOME/.zsh/env.zsh
+fi
 source $HOME/.zshrc
