@@ -1,0 +1,12 @@
+#!/bin/bash
+ctrl_c() {
+ exit;
+}
+for (( ; ; ))
+do
+trap ctrl_c INT
+mon2cam -m 0&
+pid=$!
+sleep 3m
+kill -9 $pid
+done
