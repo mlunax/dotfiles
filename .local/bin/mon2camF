@@ -5,8 +5,6 @@ ctrl_c() {
 for (( ; ; ))
 do
 trap ctrl_c INT
-mon2cam -m 0&
-pid=$!
-sleep 3m
-kill -9 $pid
+timeout --foreground 150 mon2cam -m 0
+sleep 1
 done
