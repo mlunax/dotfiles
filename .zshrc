@@ -9,7 +9,7 @@ source $ZSH/oh-my-zsh.sh
 
 plugins=(git docker virtualenv)
 
-export EDITOR=nano
+export EDITOR=vim
 export JAVA_HOME=
 
 for f in $OTHER/*.zsh; do
