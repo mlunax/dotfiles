@@ -8,7 +8,6 @@ source $ZSH/oh-my-zsh.sh
 #COMPLETION_WAITING_DOTS="false"
 
 plugins=(git docker virtualenv)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv)
 
 export EDITOR=nano
 export JAVA_HOME=
