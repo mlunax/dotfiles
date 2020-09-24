@@ -12,6 +12,8 @@ else
         sudo pacman -S bat
 	      echo Install kak
 	      sudo pacman -S kakoune
+	      echo Install Alacritty
+	      sudo pacman -S alacritty
     fi
 fi
 
