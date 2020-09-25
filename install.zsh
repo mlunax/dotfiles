@@ -1,13 +1,5 @@
 #!/usr/bin/env zsh
 # env, because some OSes keep zsh in /bin (I'm looking at you, Alpine)
-# if [[ "$1" == "update" ]]; then
-#   cp .zshrc $HOME
-#   if [ -d "${HOME}/.zsh" ]; then
-#     rm -r $HOME/.zsh
-#   fi
-#   cp -r .zsh $HOME
-#   exit
-# fi
 cp .zshrc $HOME
 if [ ! -d "${HOME}/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -25,6 +17,7 @@ fi
 if [ -n "${GOPATH}" ]; then
   sed -i "s%\#export GOPATH=\"\"%export GOPATH=\"$GOPATH\"%g" $HOME/.zsh/env.zsh
 fi
-cp -r ./.local/bin $HOME/.local
-chmod -R +x $HOME/.local/bin
+# cp -r ./.local/bin $HOME/.local
+# chmod -R +x $HOME/.local/bin
+git clone --bare git@github.com:mlunax/dotfiles.git $HOME/.dotfiles
 source $HOME/.zshrc
