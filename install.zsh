@@ -25,6 +25,9 @@ fi
 if [ -n "${GOPATH}" ]; then
   sed -i "s%\#export GOPATH=\"\"%export GOPATH=\"$GOPATH\"%g" $HOME/.zsh/env.zsh
 fi
+if [ -n "${ANDROID_SDK_ROOT}" ]; then
+  sed -i "s%\#export ANDROID_SDK_ROOT=\"\"%export ANDROID_SDK_ROOT=\"$ANDROID_SDK_ROOT\"%g" $HOME/.zsh/env.zsh
+fi
 cp -r ./.local/bin $HOME/.local
 chmod -R +x $HOME/.local/bin
 source $HOME/.zshrc
