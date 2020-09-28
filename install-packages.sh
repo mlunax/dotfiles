@@ -8,12 +8,13 @@ if [ 0 -eq $(id -u)  ]; then
     echo If it will need permission it will use 'sudo' command.
 else
     if [ $DISTRIB_ID == "ManjaroLinux" ]; then
-	      echo Install bat
-        sudo pacman -S bat
-	      echo Install kak
-	      sudo pacman -S kakoune
-	      echo Install Alacritty
-	      sudo pacman -S alacritty
+      install_command='pacman -S --needed'
+      echo Install bat
+	    sudo $install_command bat
+	    echo Install kak
+	    sudo $install_command kakoune
+	    echo Install Alacritty
+	    sudo $install_command alacritty
     fi
 fi
 
