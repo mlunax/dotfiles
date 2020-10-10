@@ -15,6 +15,8 @@ else
 	    sudo $install_command kakoune
 	    echo Install Alacritty
 	    sudo $install_command alacritty
+	    echo Install HTTPie
+	    sudo $install_command httpie
     fi
 fi
 

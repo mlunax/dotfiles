@@ -20,7 +20,7 @@ fi
 if [ -n "${ANDROID_SDK_ROOT}" ]; then
   sed -i "s%\#export ANDROID_SDK_ROOT=\"\"%export ANDROID_SDK_ROOT=\"$ANDROID_SDK_ROOT\"%g" $HOME/.zsh/env.zsh
 fi
-# cp -r ./.local/bin $HOME/.local
-# chmod -R +x $HOME/.local/bin
-git clone --bare git@github.com:mlunax/dotfiles.git $HOME/.dotfiles
+if [ ! -d "${HOME}/.dotfiles" ]; then
+  git clone --bare git@github.com:mlunax/dotfiles.git $HOME/.dotfiles
+fi
 source $HOME/.zshrc
