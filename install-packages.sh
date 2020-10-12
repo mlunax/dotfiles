@@ -1,5 +1,8 @@
 #!/bin/bash
 source /etc/lsb-release
+function echoGreen(){
+  echo -e "\e[32m"$1"\e[0m"
+}
 if  [ $# -eq 1 ] && [ $1 == "-h" ]; then
     exit
 fi
@@ -9,13 +12,13 @@ if [ 0 -eq $(id -u)  ]; then
 else
     if [ $DISTRIB_ID == "ManjaroLinux" ]; then
       install_command='pacman -S --needed'
-      echo Install bat
+      echoGreen "Installing bat"
 	    sudo $install_command bat
-	    echo Install kak
+	    echoGreen "Installing kak"
 	    sudo $install_command kakoune
-	    echo Install Alacritty
+	    echoGreen "Installing Alacritty"
 	    sudo $install_command alacritty
-	    echo Install HTTPie
+	    echoGreen "Installing HTTPie"
 	    sudo $install_command httpie
     fi
 fi
