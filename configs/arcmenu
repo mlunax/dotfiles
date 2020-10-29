@@ -1,0 +1,11 @@
+[/]
+application-shortcuts-list=[['Software', 'system-software-install-symbolic', 'ArcMenu_Software'], ['Settings', 'preferences-system-symbolic', 'gnome-control-center.desktop'], ['Tweaks', 'org.gnome.tweaks-symbolic', 'org.gnome.tweaks.desktop'], ['Terminal', 'utilities-terminal-symbolic', 'alacritty'], ['Activities Overview', 'view-fullscreen-symbolic', 'ArcMenu_ActivitiesOverview']]
+arc-menu-placement='DTP'
+distro-icon=5
+dtp-dtd-state=[true, false]
+enable-custom-arc-menu=false
+menu-button-appearance='Icon'
+menu-button-icon='Distro_Icon'
+menu-layout='Default'
+pinned-app-list=['Firefox Developer Edition', '', 'firefox-developer-edition.desktop', 'ArcMenu Settings', '/usr/share/gnome-shell/extensions/arcmenu@arcmenu.com/media/icons/arc-menu-symbolic.svg', 'gnome-extensions prefs arcmenu@arcmenu.com', 'Discord PTB', '', 'discord-ptb.desktop', 'Spotify', '', 'spotify.desktop', 'Telegram Desktop', '', 'telegramdesktop.desktop']
+show-suspend-button=true
