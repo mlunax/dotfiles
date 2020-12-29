@@ -4,9 +4,10 @@
 
 # Programs I use
 - **DE and addons**:
+    - (actually using) **KDE**
     - Gnome:
       - [ArcMenu](https://gitlab.com/arcmenu/ArcMenu) [:pencil:](https://github.com/mlunax/dotfiles/blob/master/configs/arcmenu)
-- **Terminal** [Alacritty](https://github.com/alacritty/alacritty) [:pencil:](https://github.com/mlunax/dotfiles/blob/master/.config/alacritty.yml) and [Terminator](https://github.com/gnome-terminator/terminator)
+- **Terminal** [Konsole](https://invent.kde.org/utilities/konsole), [Alacritty](https://github.com/alacritty/alacritty) [:pencil:](https://github.com/mlunax/dotfiles/blob/master/.config/alacritty.yml) and ~~[Terminator](https://github.com/gnome-terminator/terminator)~~
 - **Editor**: [kakoune] [:pencil:](https://github.com/mlunax/dotfiles/blob/master/.config/kak/kakrc) and [vim]
 - **Shell**: [zsh](https://github.com/ohmyzsh/ohmyzsh) [:pencil:](https://github.com/mlunax/dotfiles/blob/master/.zshrc)
 
