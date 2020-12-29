@@ -13,7 +13,7 @@ plug "occivink/kakoune-expand"
 
 ############
 # Appearance
-colorscheme gruvbox
+# colorscheme gruvbox
 # Make everything transparent
 set-face global Default default,default
 set-face global BufferPadding default,default
