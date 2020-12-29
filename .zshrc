@@ -10,7 +10,8 @@ source $ZSH/oh-my-zsh.sh
 plugins=(git docker virtualenv)
 
 export EDITOR=kak
-export JAVA_HOME=
+#export JAVA_HOME=
+#export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 for f in $OTHER/*.zsh; do
   if [ -f $f ]; then
