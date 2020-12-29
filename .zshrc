@@ -1,7 +1,7 @@
 export TERM="xterm-256color"
 export OTHER=$HOME/.zsh
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="powerlevel9k/powerlevel9k"
+export ZSH_THEME="powerlevel10k/powerlevel10k"
 source $OTHER/powerlevel_settings.sh
 source $ZSH/oh-my-zsh.sh
 

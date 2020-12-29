@@ -5,7 +5,7 @@ if [ ! -d "${HOME}/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 if [ ! -d "${HOME}/.oh-my-zsh/custom/themes/powerlevel9k" ]; then
-  git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 fi
 if [ -d "${HOME}/.zsh" ]; then
   rm -rf $HOME/.zsh
