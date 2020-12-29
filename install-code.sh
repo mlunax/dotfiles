@@ -11,6 +11,7 @@ else
     if [ $DISTRIB_ID == "ManjaroLinux" ]; then
         sudo pacman -S ttf-fira-code
         yay -S vscodium-bin
+        sudo ln -s /usr/bin/vscode /usr/bin/code
         code --install-extension akamud.vscode-theme-onedark
         code --install-extension vscode-icons-team.vscode-icons
     fi
