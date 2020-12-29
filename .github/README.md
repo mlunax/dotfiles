@@ -11,5 +11,5 @@
 - **Shell**: [zsh](https://github.com/ohmyzsh/ohmyzsh) [:pencil:](https://github.com/mlunax/dotfiles/blob/master/.zshrc)
 
 ---
-### The inspiration taken from [ptrcnull](https://github.com/ptrcnull/)[/dotfiles](https://github.com/ptrcnull/dotfiles) and [Daste](https://github.com/Stefankar1000)[/dotfiles](https://github.com/Stefankar1000/dotfiles/)
+### The inspiration taken from [ptrcnull](https://github.com/ptrcnull/)[/dotfiles](https://github.com/ptrcnull/dotfiles) and [Daste](https://github.com/Daste745)[/dotfiles](https://github.com/Daste745/dotfiles/)
 ---
