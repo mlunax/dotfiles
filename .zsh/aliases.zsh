@@ -1,6 +1,6 @@
 alias wget='wget -c'
 alias zshrc='source ~/.zshrc'
 alias dps='docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
-alias d-c='docker-compose'
+alias c='docker-compose'
 alias dots='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias lla='ls -lha'
