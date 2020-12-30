@@ -7,15 +7,16 @@ export OTHER=$HOME/.zsh
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME="powerlevel10k/powerlevel10k"
 source $OTHER/powerlevel_settings.sh
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 #COMPLETION_WAITING_DOTS="false"
 
-plugins=(git docker virtualenv)
+plugins=(git docker docker-compose virtualenv)
+
 
 export EDITOR=kak
 #export JAVA_HOME=
-#export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 for f in $OTHER/*.zsh; do
   if [ -f $f ]; then
@@ -41,4 +42,5 @@ if [ -d "$HOME/.zsh-custom" ]; then
     fi
   done
 fi
-autoload -Uz compinit && compinit -i
+source $ZSH/oh-my-zsh.sh
+# autoload -Uz compinit && compinit -i
