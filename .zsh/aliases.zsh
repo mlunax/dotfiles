@@ -1,7 +1,10 @@
-alias wget='wget -c'
-alias rm='rm -i'
-alias zshrc='source ~/.zshrc'
-alias dps='docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
-alias c='docker-compose'
-# alias dots='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-alias lla='ls -lha'
+alias \
+    wget='wget -c' \
+    zshrc='source ~/.zshrc' \
+    dps='docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"' \
+    c='docker-compose' \
+    lla='ls -lha' \
+    cp='cp -iv' \
+    rm='rm -iv' \
+    mv='mv -iv' \
+    mkd="mkdir -pv"
