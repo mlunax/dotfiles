@@ -15,10 +15,13 @@ if [ -n "${devTools}" ]; then
   sed -i "s%export devTools=\"\"%export devTools=\"$devTools\"%g" $HOME/.zsh/env.zsh
 fi
 if [ -n "${GOPATH}" ]; then
-  sed -i "s%\#export GOPATH=\"\"%export GOPATH=\"$GOPATH\"%g" $HOME/.zsh/env.zsh
+  sed -i "s%\# export GOPATH=\"\"%export GOPATH=\"$GOPATH\"%g" $HOME/.zsh/env.zsh
 fi
 if [ -n "${ANDROID_SDK_ROOT}" ]; then
-  sed -i "s%\#export ANDROID_SDK_ROOT=\"\"%export ANDROID_SDK_ROOT=\"$ANDROID_SDK_ROOT\"%g" $HOME/.zsh/env.zsh
+  sed -i "s%\# export ANDROID_SDK_ROOT=\"\"%export ANDROID_SDK_ROOT=\"$ANDROID_SDK_ROOT\"%g" $HOME/.zsh/env.zsh
+fi
+if [ -n "${NPM_CONFIG_PREFIX}" ]; then
+  sed -i "s%\# export NPM_CONFIG_PREFIX=\"\"%export NPM_CONFIG_PREFIX=\"$NPM_CONFIG_PREFIX\"%g" $HOME/.zsh/env.zsh
 fi
 # if [ ! -d "${HOME}/.dotfiles" ]; then
 #   git clone --bare git@github.com:mlunax/dotfiles.git $HOME/.dotfiles

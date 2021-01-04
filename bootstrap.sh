@@ -30,6 +30,9 @@ function doIt() {
     if [ -n "${ANDROID_SDK_ROOT}" ]; then
         sed -i "s%\#export ANDROID_SDK_ROOT=\"\"%export ANDROID_SDK_ROOT=\"$ANDROID_SDK_ROOT\"%g" $HOME/.zsh/env.zsh
     fi
+    if [ -n "${NPM_CONFIG_PREFIX}" ]; then
+        sed -i "s%\#export NPM_CONFIG_PREFIX=\"\"%export NPM_CONFIG_PREFIX=\"$NPM_CONFIG_PREFIX\"%g" $HOME/.zsh/env.zsh
+    fi
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
