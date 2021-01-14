@@ -7,4 +7,5 @@ alias \
     cp='cp -iv' \
     rm='rm -iv' \
     mv='mv -iv' \
-    mkd="mkdir -pv"
+    mkd="mkdir -pv" \
+    c_buildkit="COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1"
