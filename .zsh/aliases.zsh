@@ -8,4 +8,6 @@ alias \
     rm='rm -iv' \
     mv='mv -iv' \
     mkd="mkdir -pv" \
-    c_buildkit="COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1"
+    c_buildkit="COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1" \
+    ytv="youtube-dl -f bestvideo" \
+    smpv="mpv --profile=svp --script-opts=socketPath=/tmp/mpvsocket "
