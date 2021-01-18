@@ -1,9 +1,8 @@
 #########
 # Plugins
-# Install plug.kak with: git clone https://github.com/andreyorst/plug.kak.git ~/.config/kak/plugins/plug.kak
+# Install plug.kak with: git clone https://github.com/robertmeta/plug.kak ~/.config/kak/plugins/plug.kak
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
-plug "andreyorst/plug.kak"
-plug "andreyorst/fzf.kak"
+plug "robertmeta/plug.kak"
 plug "alexherbo2/search-highlighter.kak"
 plug "alexherbo2/auto-pairs.kak"
 plug "alexherbo2/move-line.kak"
