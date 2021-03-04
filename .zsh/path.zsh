@@ -1,5 +1,5 @@
 source $OTHER/env.zsh
-grep -q 'flutter' <<< $devTools && export PATH="$PATH:$HOME/.development/flutter/bin"
+grep -q 'flutter' <<< $devTools && export PATH="$PATH:$HOME/.local/opt/flutter/bin"
 grep -q 'dotnet' <<< $devTools && export PATH="$PATH:$HOME/.dotnet"
 grep -q 'cargo' <<< $devTools && source $HOME/.cargo/env
 grep -q 'gem' <<< $devTools && export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
