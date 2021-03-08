@@ -7,3 +7,4 @@ grep -q 'gem' <<< $devTools && export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')
 grep -q 'npm' <<< $devTools && export PATH="$PATH:$HOME/.local/npm/bin"
 grep -q 'go' <<< $devTools && export PATH="$PATH:$(go env GOPATH)/bin"
 grep -q 'android' <<< $devTools && export ANDROID_SDK_ROOT="$HOME/.android-sdk"
+export PATH="$PATH:$HOME/.local/scripts"

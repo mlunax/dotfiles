@@ -10,6 +10,7 @@ function doIt() {
             --exclude "install-code.sh" \
             --exclude "install-packages.sh" \
             --exclude "configs/" \
+            --exclude "install-scripts.zsh" \
             -avh --no-perms . ~;
     if [ ! -d "${HOME}/.oh-my-zsh" ]; then
         sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

@@ -1,0 +1,14 @@
+#!/usr/bin/python
+import subprocess
+
+DPY0_COMMAND = '"DPY-0: nvidia-auto-select @1440x900 +0+0 {ViewPortIn=1440x900, ViewPortOut=1440x900+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On},DPY-1: nvidia-auto-select @1920x1080 +1440+0 {AllowGSYNC=Off, ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"'
+DPY1_COMMAND = '"DPY-1: nvidia-auto-select @1920x1080 +1440+0 {AllowGSYNC=Off, ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x900 +0+0 {ViewPortIn=1440x900, ViewPortOut=1440x900+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"'
+
+if __name__ == "__main__":
+    out = subprocess.check_output("nvidia-settings --query CurrentMetaMode", shell=True).decode("utf-8").strip()
+    index0 = out.index("DPY-0")
+    index1 = out.index("DPY-1")
+    if index0 < index1:
+        subprocess.run("nvidia-settings --assign CurrentMetaMode=" + DPY0_COMMAND, shell=True)
+    elif index1 < index0:
+        subprocess.run("nvidia-settings --assign CurrentMetaMode=" + DPY1_COMMAND, shell=True)
