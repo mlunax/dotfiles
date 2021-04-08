@@ -23,6 +23,7 @@ fi
 if [ -n "${NPM_CONFIG_PREFIX}" ]; then
   sed -i "s%\# export NPM_CONFIG_PREFIX=\"\"%export NPM_CONFIG_PREFIX=\"$NPM_CONFIG_PREFIX\"%g" $HOME/.zsh/env.zsh
 fi
+cp -v .tmux.conf ~/.tmux.conf 
 # if [ ! -d "${HOME}/.dotfiles" ]; then
 #   git clone --bare git@github.com:mlunax/dotfiles.git $HOME/.dotfiles
 # fi
