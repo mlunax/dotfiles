@@ -1,0 +1,42 @@
+{
+    "workbench.colorTheme": "Atom One Dark",
+    "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontLigatures": true,
+    "workbench.iconTheme": "vscode-icons",
+    "editor.minimap.enabled": false,
+    "editor.formatOnSave": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "files.autoSave": "onFocusChange",
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "/home/lunax/.local/bin/black",
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false,
+        "editor.defaultFormatter": "Dart-Code.dart-code"
+    },
+    "dart.allowAnalytics": false,
+    "dart.debugExternalLibraries": false,
+    "dart.debugSdkLibraries": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "[go]": {
+        "editor.defaultFormatter": "golang.go"
+    },
+    "vsicons.dontShowNewVersionMessage": true,
+    "vim.handleKeys": {
+        "<C-c>": false,
+        "<C-v>": false,
+        "<C-x>": false
+    }
+}
