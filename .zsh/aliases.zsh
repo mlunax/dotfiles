@@ -12,4 +12,6 @@ alias \
     ytv="youtube-dl -f bestvideo" \
     smpv="mpv --profile=svp --script-opts=socketPath=/tmp/mpvsocket " \
     discord-stream="doas modprobe v4l2loopback video_nr=15;nohup ffmpeg -hide_banner -loglevel error -f x11grab -r 30 -s 1920x1080 -i :0+1440,0 -pix_fmt yuv420p -f v4l2 /dev/video15&; disown" \
-    vim="nvim"
+    screen-stream="discord-stream" \
+    vim="nvim" \
+    swap-ytmpv-profiles="sed -i 's/mpv-yt/mpv-yt-inactive/g' ~/.config/mpv/mpv.conf && sed -i 's/mpv-yt-inactive-inactive/mpv-yt/g' ~/.config/mpv/mpv.conf" 
