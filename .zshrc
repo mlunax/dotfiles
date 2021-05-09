@@ -14,7 +14,7 @@ source $OTHER/powerlevel_settings.sh
 plugins=(git docker docker-compose virtualenv)
 
 
-export EDITOR=kak
+export EDITOR=nvim
 #export JAVA_HOME=
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
