@@ -29,6 +29,7 @@ if [ -d "$HOME/.zsh-custom" ]; then
     fi
   done
 fi
+DISABLE_MAGIC_FUNCTIONS=true
 source $ZSH/oh-my-zsh.sh
 # autoload -Uz compinit && compinit -i
 source $OTHER/func.zsh
