@@ -3,7 +3,6 @@ alias \
     zshrc='source ~/.zshrc' \
     dps='docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"' \
     c='docker compose' \
-    kubectl="minikube kubectl --" \
     lla='ls -lha' \
     cp='cp -iv' \
     rm='rm -iv' \
