@@ -36,11 +36,19 @@ if [ -n "${NPM_CONFIG_PREFIX}" ]; then
 fi
 cp -v .tmux.conf ~/.tmux.conf 
 
+echo
+echo "[*] installing config files"
+install -m644 .zshrc -t "$HOME"
+find config -type f | while read file; do
+	install $file $(echo $file | sed "s|config|$HOME/.config|")
+done
+
 echo 
 echo "[*] installing executables"
 
 find bin -type f | while read -r file; do
 	install $file $(echo $file | sed "s|bin|$HOME/.local/bin|")
 done
+
 
 source $HOME/.zshrc
