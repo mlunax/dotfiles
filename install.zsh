@@ -28,4 +28,10 @@ if [ -n "${NPM_CONFIG_PREFIX}" ]; then
   sed -i "s%\# export NPM_CONFIG_PREFIX=\"\"%export NPM_CONFIG_PREFIX=\"$NPM_CONFIG_PREFIX\"%g" $HOME/.zsh/env.zsh
 fi
 cp -v .tmux.conf ~/.tmux.conf 
+
+echo "[*] installing executables"
+find bin -type f | while read -r file; do
+	install $file $(echo $file | sed "s|bin|$HOME/.local/bin|")
+done
+
 source $HOME/.zshrc
