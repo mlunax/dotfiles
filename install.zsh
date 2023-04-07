@@ -1,16 +1,20 @@
 #!/usr/bin/env zsh
 # env, because some OSes keep zsh in /bin (I'm looking at you, Alpine)
-cp .zshrc $HOME
+
+cp -v .zshrc $HOME
 if [ ! -d "${HOME}/.oh-my-zsh" ]; then
+  echo "Installing OMZsh"
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 if [ ! -d "${HOME}/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
+  echo "Installing powerlevel10k"
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 fi
 if [ -d "${HOME}/.zsh" ]; then
+  echo "Deleting old .zsh/"
   rm -rf $HOME/.zsh
 fi
-cp -r .zsh/ $HOME
+cp -rv .zsh/ $HOME
 if [ -n "${devTools}" ]; then
   sed -i "s%export devTools=\"\"%export devTools=\"$devTools\"%g" $HOME/.zsh/env.zsh
 fi
@@ -24,7 +28,4 @@ if [ -n "${NPM_CONFIG_PREFIX}" ]; then
   sed -i "s%\# export NPM_CONFIG_PREFIX=\"\"%export NPM_CONFIG_PREFIX=\"$NPM_CONFIG_PREFIX\"%g" $HOME/.zsh/env.zsh
 fi
 cp -v .tmux.conf ~/.tmux.conf 
-# if [ ! -d "${HOME}/.dotfiles" ]; then
-#   git clone --bare git@github.com:mlunax/dotfiles.git $HOME/.dotfiles
-# fi
 source $HOME/.zshrc
