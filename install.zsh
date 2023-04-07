@@ -1,6 +1,11 @@
 #!/usr/bin/env zsh
 # env, because some OSes keep zsh in /bin (I'm looking at you, Alpine)
 
+install() {
+  # screw you coreutils install and your ugly messages
+  command install -Dv $@ | grep -v removed
+}
+
 cp -v .zshrc $HOME
 if [ ! -d "${HOME}/.oh-my-zsh" ]; then
   echo "Installing OMZsh"
