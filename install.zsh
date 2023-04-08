@@ -1,8 +1,6 @@
 #!/usr/bin/env zsh
 # env, because some OSes keep zsh in /bin (I'm looking at you, Alpine)
 
-echo $LAPTOP
-exit
 install() {
   # screw you coreutils install and your ugly messages
   command install -Dv $@ | grep -v removed
