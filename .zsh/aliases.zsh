@@ -22,5 +22,6 @@ alias \
     gres='git restore' \
     gs='git status' \
     gst='git stash' \
-    hx='helix'
+    hx='helix' \
+    sudo='doas'
 
