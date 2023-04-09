@@ -26,7 +26,18 @@ setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 
-export EDITOR=nvim
+if iscmd helix; then
+  export EDITOR=helix
+elif iscmd nvim; then
+  export EDITOR=nvim
+else 
+  export EDITOR=vim
+fi
+
+if iscmd google-chrome-stable; then
+  export BROWSER=google-chrome-stable
+fi
+
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 for f in $OTHER/*.zsh; do

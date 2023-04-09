@@ -6,5 +6,3 @@ export devTools=""
 
 # Uncomment if u want this env (default: $HOME/.local/npm"):
 # export NPM_CONFIG_PREFIX=""
-
-#export BROWSER="google-chrome-stable"
