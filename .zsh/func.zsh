@@ -12,3 +12,7 @@ bindkey '^Z' ctrlz
 squash() {
 	mksquashfs "$1" "$1.zst.sfs" -comp zstd -Xcompression-level 15
 }
+
+escfpath(){
+  printf "%q\n" "$(realpath "$1")"
+}
