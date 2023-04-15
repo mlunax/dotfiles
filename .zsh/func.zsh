@@ -8,3 +8,7 @@ ctrlz() {
 }
 zle -N ctrlz
 bindkey '^Z' ctrlz
+
+squash() {
+	mksquashfs "$1" "$1.zst.sfs" -comp zstd -Xcompression-level 15
+}

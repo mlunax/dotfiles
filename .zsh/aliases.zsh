@@ -25,3 +25,4 @@ alias \
     hx='helix' \
     sudo='doas'
 
+alias history='fc -l 0'
