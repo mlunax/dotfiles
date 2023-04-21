@@ -8,7 +8,6 @@ alias \
     rm='rm -iv' \
     mv='mv -iv' \
     mkd="mkdir -pv" \
-    ytv="youtube-dl -f bestvideo" \
     smpv="mpv --profile=svp --script-opts=socketPath=/tmp/mpvsocket " \
     vim="nvim" \
     swap-ytmpv-profiles="sed -i 's/mpv-yt/mpv-yt-inactive/g' ~/.config/mpv/mpv.conf && sed -i 's/mpv-yt-inactive-inactive/mpv-yt/g' ~/.config/mpv/mpv.conf; grep -1 mpv-yt ~/.config/mpv/mpv.conf" \
@@ -26,3 +25,4 @@ alias \
     sudo='doas'
 
 alias history='fc -l 0'
+alias ytdlp='yt-dlp `xclip -o`'
