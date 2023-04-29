@@ -9,4 +9,4 @@ export devTools=""
 # export NPM_CONFIG_PREFIX=""
 
 # NOTICA
-export NOTICA_URL=""
+# export NOTICA_URL=""
