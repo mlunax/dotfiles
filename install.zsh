@@ -28,6 +28,9 @@ fi
 if [ -n "${GOPATH}" ]; then
   sed -i "s%\# export GOPATH=\"\"%export GOPATH=\"$GOPATH\"%g" $HOME/.zsh/env.zsh
 fi
+if [ -n "${NOTICA_URL}" ]; then
+  sed -i "s%\# export NOTICA_URL=\"\"%export NOTICA_URL=\"$NOTICA_URL\"%g" $HOME/.zsh/env.zsh
+fi
 if [ -n "${ANDROID_SDK_ROOT}" ]; then
   sed -i "s%\# export ANDROID_SDK_ROOT=\"\"%export ANDROID_SDK_ROOT=\"$ANDROID_SDK_ROOT\"%g" $HOME/.zsh/env.zsh
 fi
