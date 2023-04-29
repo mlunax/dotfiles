@@ -1,4 +1,6 @@
 # Turn control+z into a toggle switch
+source env.zsh
+
 ctrlz() {
     if [[ $#BUFFER == 0 ]]; then
           fg >/dev/null 2>&1 && zle redisplay
