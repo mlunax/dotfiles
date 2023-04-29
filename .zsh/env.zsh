@@ -1,5 +1,6 @@
 # Set Devs Tools
-# [] = {flutter, go, dotnet, npm, cargo, gem, android, pulumi}
+# Do not put rtx installed envs here
+# [] = {flutter, GO, dotnet, npm, cargo, gem, android, pulumi}
 export devTools=""
 # Uncomment if u want this env:
 # export GOPATH=""
