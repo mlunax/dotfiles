@@ -16,3 +16,7 @@ squash() {
 escfpath(){
   printf "%q\n" "$(realpath "$1")"
 }
+
+if [[ -z "NOTICA_URL" ]]; then
+  notica() { curl --data "d:$*" "$NOTICA_URL" ; }
+fi
