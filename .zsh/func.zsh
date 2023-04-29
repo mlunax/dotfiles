@@ -1,5 +1,5 @@
 # Turn control+z into a toggle switch
-source env.zsh
+source $OTHER/env.zsh
 
 ctrlz() {
     if [[ $#BUFFER == 0 ]]; then
