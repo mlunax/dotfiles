@@ -13,10 +13,10 @@ rtx() {
 
   case "$command" in
   deactivate|shell)
-    eval "$(/home/lunax/.cargo/bin/rtx "$command" "$@")"
+    eval "$($HOME/.cargo/bin/rtx "$command" "$@")"
     ;;
   *)
-    command /home/lunax/.cargo/bin/rtx "$command" "$@"
+    command $HOME/.cargo/bin/rtx "$command" "$@"
     ;;
   esac
 }
