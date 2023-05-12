@@ -19,6 +19,11 @@ escfpath(){
   printf "%q\n" "$(realpath "$1")"
 }
 
+# Need to have spotify url in clipboard
+getSpotifyTitle(){
+  curl -s $(xclip -o) | fq -r .html.head.title
+}
+
 if [[ ! -z "NOTICA_URL" ]]; then
   notica() { curl --data "d:$*" "$NOTICA_URL" ; }
 fi
