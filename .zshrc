@@ -34,6 +34,15 @@ else
   export EDITOR=vim
 fi
 
+if ! iscmd docker-compose; then
+	alias c='docker compose'
+fi
+
+if ! iscmd docker && iscmd podman; then
+	alias docker='podman'
+	alias c='podman-compose'
+fi
+
 if iscmd google-chrome-stable; then
   export BROWSER=google-chrome-stable
 fi
