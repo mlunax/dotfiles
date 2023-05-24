@@ -21,7 +21,7 @@ escfpath(){
 
 # Need to have spotify url in clipboard
 getSpotifyTitle(){
-  curl -s $(xclip -o) | fq -r .html.head.title
+  curl -s $(xclip -sel clip -o) | fq -r .html.head.title
 }
 
 if [[ ! -z "NOTICA_URL" ]]; then
