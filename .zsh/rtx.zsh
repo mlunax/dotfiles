@@ -6,7 +6,7 @@ rtx() {
   local command
   command="${1:-}"
   if [ "$#" = 0 ]; then
-    command /home/lunax/.cargo/bin/rtx
+    command $HOME/.cargo/bin/rtx
     return
   fi
   shift
