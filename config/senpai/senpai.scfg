@@ -1,0 +1,15 @@
+# to be used with https://github.com/ptrcnull/kouhai
+address prox.lunax.cloud:6667
+nickname lunax
+username lunax
+tls false
+password-cmd secret-tool lookup irc lunax
+typings false
+pane-widths {
+  nicknames 0
+  channels 24
+  members 0
+}
+colors {
+  unread "#00ffff"
+}
