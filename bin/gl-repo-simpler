@@ -1,0 +1,33 @@
+#!/bin/bash
+if [ -z "$GITLAB_HOST" ]; then
+	echo "Give me your GL HOST(with https://)"
+	read GITLAB_HOST
+fi
+if [ -z "$PROJECT_ID" ]; then
+	echo "Give me Project ID"
+	read PROJECT_ID
+fi
+if [ -z "$PAT" ]; then
+	echo "Give me your PAT"
+	read -s PAT
+fi
+
+curl --request PUT \
+--url "$GITLAB_HOST/api/v4/projects/$PROJECT_ID" \
+--header "Authorization: Bearer $PAT" \
+--header "content-type: multipart/form-data" \
+--form wiki_enabled=false \
+--form packages_enabled=false \
+--form snippets_access_level=disabled \
+--form monitor_access_level=disabled \
+--form feature_flags_access_level=disabled \
+--form infrastructure_access_level=disabled \
+--form releases_access_level=disabled \
+--form security_and_compliance_access_level=disabled \
+--form container_registry_access_level=disabled \
+--form merge_requests_access_level=disabled \
+--form issues_access_level=disabled \
+--form auto_devops_enabled=false \
+--form forking_access_level=disabled \
+--form analytics_access_level=disabled \
+--form builds_access_level=disabled
