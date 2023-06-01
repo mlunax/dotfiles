@@ -38,7 +38,13 @@ if [ -n "${NPM_CONFIG_PREFIX}" ]; then
   sed -i "s%\# export NPM_CONFIG_PREFIX=\"\"%export NPM_CONFIG_PREFIX=\"$NPM_CONFIG_PREFIX\"%g" $HOME/.zsh/env.zsh
 fi
 cp -v .tmux.conf ~/.tmux.conf 
-cp -v .wezterm.lua ~/
+
+echo
+echo "[*] installing homedir files"
+find homedir -type f |while read -r file; do
+	install $file $(echo $file | sed "s|homedir|$HOME|")
+done
+
 echo
 echo "[*] installing config files"
 install -m644 .zshrc -t "$HOME"
