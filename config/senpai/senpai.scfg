@@ -2,7 +2,7 @@
 address prox.lunax.cloud:6667
 nickname lunax
 username lunax
-tls false
+tls true
 password-cmd secret-tool lookup irc lunax
 typings false
 pane-widths {
