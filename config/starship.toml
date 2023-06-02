@@ -1,0 +1,45 @@
+# Adapted from: https://github.com/ptrcnull/dotfiles/blob/master/config/starship.toml
+add_newline = true
+format = """
+$env_var\
+$username\
+$hostname\
+$directory\
+
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+
+$python\
+
+$character"""
+
+[env_var.CUSTOM_PROMPT_TAG]
+format = "[$env_value]($style) "
+style = "green bold"
+
+[username]
+format = "[$user]($style)@"
+
+[hostname]
+format = "[$hostname]($style) "
+
+[directory]
+truncate_to_repo = false
+fish_style_pwd_dir_length = 3
+
+[git_status]
+format = "$ahead_behind$conflicted$stashed$deleted$renamed$staged$modified$untracked"
+ahead = "[⇡${count}](yellow) "
+behind = "[⇣${count}](yellow) "
+stashed = "[*${count}](yellow) "
+deleted = "[x${count}](red) "
+staged = "[+${count}](yellow) "
+modified = "[!${count}](yellow) "
+untracked = "[?${count}](cyan) "
+
+[python]
+format = 'with [${symbol}${pyenv_prefix}($virtualenv )]($style)'
+detect_files = []
+detect_extensions = []

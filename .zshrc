@@ -1,16 +1,22 @@
 iscmd() {
 	command -v "$1" > /dev/null
 }
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 export TERM="xterm-256color"
 export OTHER=$HOME/.zsh
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="powerlevel10k/powerlevel10k"
-source $OTHER/powerlevel_settings.sh
-#COMPLETION_WAITING_DOTS="false"
+source $ZSH/oh-my-zsh.sh
+
+if iscmd starship; then
+	source <(starship init zsh --print-full-init)
+else
+  export ZSH_THEME="powerlevel10k/powerlevel10k"
+  source $OTHER/powerlevel_settings.sh
+  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  fi
+fi
+
 
 plugins=(git docker docker-compose virtualenv)
 
@@ -64,6 +70,5 @@ if [ -d "$HOME/.zsh-custom" ]; then
 fi
 
 DISABLE_MAGIC_FUNCTIONS=true
-source $ZSH/oh-my-zsh.sh
 # autoload -Uz compinit && compinit -i
 source $OTHER/func.zsh
