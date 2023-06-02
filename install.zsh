@@ -1,6 +1,13 @@
 #!/usr/bin/env zsh
 # env, because some OSes keep zsh in /bin (I'm looking at you, Alpine)
 
+for cmd in curl git sed install find; do
+  if ! command -v $cmd >/dev/null; then
+    echo "[!] $cmd not found"
+    exit 1
+  fi
+done
+
 install() {
   # screw you coreutils install and your ugly messages
   command install -Dv $@ | grep -v removed
@@ -59,5 +66,6 @@ find bin -type f | while read -r file; do
 	install $file $(echo $file | sed "s|bin|$HOME/.local/bin|")
 done
 
+unfunction install
 
-source $HOME/.zshrc
+exec zsh
