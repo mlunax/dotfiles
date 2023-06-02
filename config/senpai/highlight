@@ -10,8 +10,8 @@ else
     title="[$BUFFER] $SENDER"
 fi
 
-# focus=$(swaymsg -t get_tree | jq -r '..|objects|select(.focused==true)|.name' | grep -c ^senpai)
+focus=$(xdotool getwindowfocus getwindowname |grep -c senpai)
 
-#if [ "$focus" -eq 0 ] || [ "$HERE" -eq 0 ]; then
+if [ "$focus" -eq 0 ]; then
 	notify-send "$title" "$(escape "$MESSAGE")"
-# fi
+fi
