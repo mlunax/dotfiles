@@ -5,7 +5,6 @@ iscmd() {
 export TERM="xterm-256color"
 export OTHER=$HOME/.zsh
 export ZSH=$HOME/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
 
 if iscmd starship; then
 	source <(starship init zsh --print-full-init)
@@ -17,6 +16,7 @@ else
   fi
 fi
 
+source $ZSH/oh-my-zsh.sh
 
 plugins=(git docker docker-compose virtualenv)
 
