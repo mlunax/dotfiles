@@ -40,6 +40,8 @@ else
   export EDITOR=vim
 fi
 
+alias c='docker-compose'
+
 if ! iscmd docker-compose; then
 	alias c='docker compose'
 fi
