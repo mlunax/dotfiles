@@ -13,5 +13,5 @@ fi
 focus=$(xdotool getwindowfocus getwindowname |grep -c senpai)
 
 if [ "$focus" -eq 0 ]; then
-	notify-send "$title" "$(escape "$MESSAGE")"
+	notify-send "$title" "$(escape "$MESSAGE")" -a "Senpai"
 fi
