@@ -25,3 +25,5 @@ alias \
 
 alias history='fc -l 0'
 alias ytdlp='yt-dlp `xclip -o`'
+alias 'sudo -i'='sudo su -' 
+alias 'cls'='clear'
