@@ -6,7 +6,7 @@
 - **DE and addons**:
     - (actually using) **KDE**
 - [WezTerm](https://github.com/wez/wezterm)
-- **Shell**: [zsh](https://github.com/ohmyzsh/ohmyzsh) [:pencil:](https://github.com/mlunax/dotfiles/blob/master/.zshrc), starship
+- **Shell**: [zsh](https://github.com/ohmyzsh/ohmyzsh) [:pencil:](https://github.com/mlunax/dotfiles/blob/master/.zshrc), starship, tmux (with tpm)
 - **Editors**: [neovim](https://github.com/neovim/neovim), [helix](https://github.com/helix-editor/helix), vscode, [vim](https://github.com/vim/vim)
 
 ---
