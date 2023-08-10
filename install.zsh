@@ -1,6 +1,10 @@
 #!/usr/bin/env zsh
 # env, because some OSes keep zsh in /bin (I'm looking at you, Alpine)
 
+iscmd() {
+        command -v "$1" > /dev/null
+}
+
 for cmd in curl git sed install find; do
   if ! command -v $cmd >/dev/null; then
     echo "[!] $cmd not found"
@@ -12,6 +16,12 @@ install() {
   # screw you coreutils install and your ugly messages
   command install -Dv $@ | grep -v removed
 }
+
+if iscmd glow; then
+  CHANGELOG=$(glow changelog.md)
+else
+  CHANGELOG=$(cat changelog.md)
+fi
 
 cp -v .zshrc $HOME
 if [ ! -d "${HOME}/.oh-my-zsh" ]; then
@@ -68,4 +78,5 @@ done
 
 unfunction install
 
+echo $CHANGELOG
 exec zsh
