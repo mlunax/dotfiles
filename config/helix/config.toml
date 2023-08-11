@@ -3,3 +3,8 @@ theme = "catppuccin_mocha"
 [editor.file-picker]
 hidden = false
 git-ignore = false
+
+[keys.normal]
+l = ["collapse_selection", "extend_to_line_end"]
+h = ["collapse_selection", "extend_to_line_start"]
+s = ["collapse_selection", "select_mode", "goto_first_nonwhitespace", "exit_select_mode"]
