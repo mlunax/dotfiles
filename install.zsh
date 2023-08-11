@@ -78,5 +78,6 @@ done
 
 unfunction install
 
+echo Important changes:
 echo $CHANGELOG
 exec zsh
