@@ -20,8 +20,7 @@ alias \
     gres='git restore' \
     gs='git status' \
     gst='git stash' \
-    hx='helix' \
-    sudo='doas'
+    hx='helix'
 
 alias history='fc -l 0'
 alias ytdlp='yt-dlp `xclip -o`'
@@ -29,3 +28,7 @@ alias 'sudo -i'='sudo su -'
 alias 'cls'='clear'
 alias 'rsyncA'='rsync -azzP'
 alias wgetx='wget `xclip -o`'
+
+if iscmd doas; then
+    alias sudo='doas'
+fi
