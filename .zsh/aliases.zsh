@@ -28,6 +28,7 @@ alias 'sudo -i'='sudo su -'
 alias 'cls'='clear'
 alias 'rsyncA'='rsync -azzP'
 alias wgetx='wget `xclip -o`'
+alias a='host -ta'
 
 if iscmd doas; then
     alias sudo='doas'
