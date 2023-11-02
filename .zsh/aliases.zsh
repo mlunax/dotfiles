@@ -29,7 +29,7 @@ alias 'cls'='clear'
 alias 'rsyncA'='rsync -azzP'
 alias wgetx='wget `xclip -o`'
 alias a='host -ta'
-alias tunt='until !!; do sleep 5 ; done'
+alias tunt='until fc -s; do sleep 5 ; done'
 if iscmd doas; then
     alias sudo='doas'
 fi
