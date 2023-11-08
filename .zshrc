@@ -1,3 +1,5 @@
+DISABLE_AUTO_UPDATE=true
+
 iscmd() {
 	command -v "$1" > /dev/null
 }
