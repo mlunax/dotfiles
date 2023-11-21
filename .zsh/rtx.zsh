@@ -1,28 +1,28 @@
 export RTX_SHELL=zsh
-
+RTX_BIN_PATH=$(whereis rtx | cut -d ':' -f2 | xargs)
 if iscmd rtx; then
   rtx() {
     local command
     command="${1:-}"
     if [ "$#" = 0 ]; then
-      command $HOME/.cargo/bin/rtx
+      command $RTX_BIN_PATH
       return
     fi
     shift
 
     case "$command" in
     deactivate|shell)
-      eval "$($HOME/.cargo/bin/rtx "$command" "$@")"
+      eval "$($RTX_BIN_PATH "$command" "$@")"
       ;;
     *)
-      command $HOME/.cargo/bin/rtx "$command" "$@"
+      command $RTX_BIN_PATH "$command" "$@"
       ;;
     esac
   }
 
   _rtx_hook() {
     trap -- '' SIGINT;
-    eval "$("$HOME/.cargo/bin/rtx" hook-env -s zsh)";
+    eval "$("$RTX_BIN_PATH" hook-env -s zsh)";
     trap - SIGINT;
   }
   typeset -ag precmd_functions;
