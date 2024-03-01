@@ -20,8 +20,9 @@ alias \
     gres='git restore' \
     gs='git status' \
     gst='git stash' \
-    hx='helix'
+    hx='helix' 
 
+alias gcl='git clone'
 alias history='fc -l 0'
 alias ytdlp='yt-dlp `xclip -o`'
 alias 'sudo -i'='sudo su -' 
