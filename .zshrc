@@ -10,14 +10,27 @@ export TERM="xterm-256color"
 export OTHER=$HOME/.zsh
 export ZSH=$HOME/.oh-my-zsh
 
+__ptrc_prompt() {
+	local c_green=$'%{\x1b[32m%}'
+	local c_blue=$'%{\x1b[34m%}'
+	local c_reset=$'%{\x1b[0m%}'
+	local c_red=$'%{\x1b[31m%}'
+	local c_cyan=$'%{\x1b[36m%}'
+
+	if [ "$SSH_TTY" ]; then
+		local hostprefix="${c_red}${USER}${c_reset}@${c_cyan}${HOST} "
+	else
+		local hostprefix=""
+	fi
+
+	echo "${hostprefix}${c_blue}%~ ${c_green}>$c_reset "
+}
+
 if iscmd starship; then
 	source <(starship init zsh --print-full-init)
 else
-  export ZSH_THEME="powerlevel10k/powerlevel10k"
-  source $OTHER/powerlevel_settings.sh
-  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-  fi
+	setopt promptsubst
+	export PS1='$(__ptrc_prompt)'
 fi
 
 if [ -d /usr/share/zsh/plugins ] && [ -d /usr/share/zsh/plugins/zsh-autosuggestions ]; then
