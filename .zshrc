@@ -1,5 +1,7 @@
 DISABLE_AUTO_UPDATE=true
 
+autoload -Uz compinit && compinit
+
 iscmd() {
 	command -v "$1" > /dev/null
 }
@@ -24,8 +26,6 @@ else
 	plugins="$HOME/.local/share/zsh-plugins"
 fi
 
-source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 ## History file configuration
 HISTFILE="$HOME/.zsh_history"
@@ -75,5 +75,6 @@ if [ -d "$HOME/.zsh-custom" ]; then
 fi
 
 DISABLE_MAGIC_FUNCTIONS=true
-# autoload -Uz compinit && compinit -i
 source $OTHER/func.zsh
+source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
