@@ -74,6 +74,9 @@ if [ -d "$HOME/.zsh-custom" ]; then
   done
 fi
 
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 DISABLE_MAGIC_FUNCTIONS=true
 source $OTHER/func.zsh
 source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
