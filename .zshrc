@@ -18,9 +18,14 @@ else
   fi
 fi
 
-source $ZSH/oh-my-zsh.sh
+if [ -d /usr/share/zsh/plugins ] && [ -d /usr/share/zsh/plugins/zsh-autosuggestions ]; then
+	plugins="/usr/share/zsh/plugins"
+else
+	plugins="$HOME/.local/share/zsh-plugins"
+fi
 
-plugins=(git docker docker-compose virtualenv)
+source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 ## History file configuration
 HISTFILE="$HOME/.zsh_history"
@@ -51,10 +56,6 @@ fi
 if ! iscmd docker && iscmd podman; then
 	alias docker='podman'
 	alias c='podman-compose'
-fi
-
-if iscmd google-chrome-stable; then
-  export BROWSER=google-chrome-stable
 fi
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
