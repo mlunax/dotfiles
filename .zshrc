@@ -169,6 +169,10 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 
+if iscmd fzf; then
+  source <(fzf --zsh);
+fi
+
 DISABLE_MAGIC_FUNCTIONS=true
 source $OTHER/func.zsh
 source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
