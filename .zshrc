@@ -55,6 +55,10 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt appendhistory
 setopt sharehistory
 
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
+
 if iscmd helix; then
   export EDITOR=helix
 elif iscmd nvim; then
@@ -89,7 +93,6 @@ if [ -d "$HOME/.zsh-custom" ]; then
     fi
   done
 fi
-
 
 # configure completion
 zstyle ':completion:*:*:*:*:*' menu select
