@@ -1,7 +1,5 @@
 DISABLE_AUTO_UPDATE=true
 
-autoload -Uz compinit && compinit
-
 iscmd() {
 	command -v "$1" > /dev/null
 }
@@ -39,11 +37,14 @@ else
 	plugins="$HOME/.local/share/zsh-plugins"
 fi
 
+# Load completions
+autoload -Uz compinit && compinit
 
 ## History file configuration
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000000
-SAVEHIST=10000000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
 
 ## History command configuration
 setopt extended_history       # record timestamp of command in HISTFILE
@@ -51,6 +52,8 @@ setopt hist_expire_dups_first # delete duplicates first when HISTFILE size excee
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
+setopt appendhistory
+setopt sharehistory
 
 if iscmd helix; then
   export EDITOR=helix
