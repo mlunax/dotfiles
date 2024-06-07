@@ -173,6 +173,10 @@ if iscmd fzf; then
   source <(fzf --zsh);
 fi
 
+if iscmd zoxide; then
+  eval "$(zoxide init zsh)"
+fi
+
 DISABLE_MAGIC_FUNCTIONS=true
 source $OTHER/func.zsh
 source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
