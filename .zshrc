@@ -198,6 +198,10 @@ if iscmd zoxide; then
   eval "$(zoxide init zsh)"
 fi
 
+if iscmd tldr; then
+  alias tldrf='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
+fi
+
 DISABLE_MAGIC_FUNCTIONS=true
 source $OTHER/func.zsh
 source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
