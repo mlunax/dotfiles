@@ -171,6 +171,7 @@ bindkey '^xe' edit-command-line
 
 if iscmd fzf; then
   source <(fzf --zsh);
+  export FZF_COMPLETION_OPTS='--border --info=inline --reverse'
   export FZF_CTRL_R_OPTS="
   --preview 'echo {}' --preview-window up:3:hidden:wrap
   --bind 'ctrl-/:toggle-preview'
@@ -186,6 +187,11 @@ if iscmd fzf; then
   export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'"
+  if iscmd fd; then
+    _fzf_compgen_path() {
+      fd --hidden --follow --exclude ".git" . "$1"
+    }
+  fi
 fi
 
 if iscmd zoxide; then
