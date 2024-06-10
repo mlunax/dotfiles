@@ -17,3 +17,18 @@ if [ $commands[kubectl] ]; then
     $0 "$@"
   }
 fi
+if [ $commands[pulumi] ]; then
+
+  # Placeholder 'kubectl' shell function:
+  # Will only be executed on the first call to 'kubectl'
+  pulumi() {
+
+    # Remove this function, subsequent calls will execute 'kubectl' directly
+    unfunction "$0"
+
+    # Load auto-completion
+    source <(pulumi gen-completion zsh)
+
+    $0 "$@"
+  }
+fi
