@@ -57,12 +57,6 @@ if [ "$(id -u)" != 0 ]; then
     fi
 fi
 
-if iscmd bat; then
-  CHANGELOG=$(bat -fp changelog.md 2> /dev/null)
-else
-  CHANGELOG=$(cat changelog.md)
-fi
-
 cp -v .zshrc $HOME
 if [ -d "${HOME}/.zsh" ]; then
   echo
@@ -118,6 +112,3 @@ for plugin in $=plugins_git; do
   done
 
 unfunction install
-echo ""
-echo Important changes:
-echo $CHANGELOG
