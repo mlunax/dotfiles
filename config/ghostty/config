@@ -10,3 +10,6 @@ keybind = alt+7=unbind
 keybind = alt+8=unbind
 keybind = alt+9=unbind
 keybind = alt+0=unbind
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+keybind = alt+u=unbind
