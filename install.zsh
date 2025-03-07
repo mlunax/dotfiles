@@ -102,7 +102,7 @@ done
 
 for plugin in $=plugins_git; do
     name="${plugin/*\//}"
-
+    mkdir -p "$plugins_dir"
     if [ ! -d "$plugins_dir/$name" ]; then
       echo "[*] installing $name locally"
       git clone --depth=1 "$plugin" "$plugins_dir/$name"
