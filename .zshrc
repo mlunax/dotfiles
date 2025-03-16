@@ -59,9 +59,7 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 
-if iscmd helix; then
-  export EDITOR=helix
-elif iscmd nvim; then
+if iscmd nvim; then
   export EDITOR=nvim
 else 
   export EDITOR=vim
