@@ -84,13 +84,6 @@ for f in $OTHER/*.zsh; do
   fi
 done
 
-if [ -d "$HOME/.zsh-custom" ]; then
-  for f in $HOME/.zsh-custom/*; do
-    if [ -f $f ]; then
-      source $f
-    fi
-  done
-fi
 
 # configure completion
 zstyle ':completion:*:*:*:*:*' menu select
