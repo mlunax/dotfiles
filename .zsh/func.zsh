@@ -27,3 +27,7 @@ getSpotifyTitle(){
 if [[ ! -z "NOTICA_URL" ]]; then
   notica() { curl --data "d:$*" "$NOTICA_URL" ; }
 fi
+
+actmise(){
+  eval "$(mise activate zsh)"
+}
