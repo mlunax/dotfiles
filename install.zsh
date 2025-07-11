@@ -111,8 +111,5 @@ for plugin in $=plugins_git; do
     fi
   done
 
-if iscmd mise; then
-  mise activate > $HOME/.zsh/mise.zsh
-fi
 
 unfunction install iscmd
