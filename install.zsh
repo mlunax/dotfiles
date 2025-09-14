@@ -2,7 +2,6 @@
 # love you ptrc for your work <3
 
 #!/bin/zsh
-
 if [ "$ZSH_EVAL_CONTEXT" = "toplevel" ]; then
 	echo "[!] this script is meant to be sourced"
 fi
@@ -25,7 +24,6 @@ for cmd in curl git sed install find; do
 		exit 1
 	fi
 done
-
 set -e
 
 # migrate legacy
@@ -45,7 +43,8 @@ if command -v rsync >/dev/null; then
 	echo "[*] installing config files"
 	rsync --archive --update --hard-links --itemize-changes --delay-updates \
 		./config/ ~/.config/
-
+	rsync --archive --update --hard-links --itemize-changes --delay-updates \
+	    ./.zshrc "$HOME"
 	echo "[*] installing executables"
 	rsync --archive --update --hard-links --itemize-changes --delay-updates \
 		./bin/ ~/.local/bin/
@@ -70,10 +69,10 @@ else
 	unfunction install
 fi
 
-if ! { [ -f "$HOME"/.ssh/authorized_keys ] && grep -q patrycja "$HOME"/.ssh/authorized_keys }; then
-	echo "[*] installing SSH keys"
-	mkdir -p "$HOME"/.ssh
-fi
+#if ! { [ -f "$HOME"/.ssh/authorized_keys ] && grep -q patrycja "$HOME"/.ssh/authorized_keys }; then
+#	echo "[*] installing SSH keys"
+#	mkdir -p "$HOME"/.ssh
+#:whilefi
 
 os_id="$( . /etc/os-release 2>/dev/null && echo "$ID" || echo "unknown" )"
 
