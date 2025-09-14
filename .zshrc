@@ -78,10 +78,12 @@ fi
 
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
-#export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 if [ "$(uname)" = "Darwin" ]; then
   export GPG_TTY=$(tty)
+  ssh-add --apple-load-keychain -q
+else
+    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 fi
 
 # configure completion
