@@ -73,7 +73,6 @@ fi
 if ! { [ -f "$HOME"/.ssh/authorized_keys ] && grep -q patrycja "$HOME"/.ssh/authorized_keys }; then
 	echo "[*] installing SSH keys"
 	mkdir -p "$HOME"/.ssh
-	curl -L https://ptrc.gay/keys >> "$HOME"/.ssh/authorized_keys
 fi
 
 os_id="$( . /etc/os-release 2>/dev/null && echo "$ID" || echo "unknown" )"
