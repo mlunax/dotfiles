@@ -78,12 +78,9 @@ fi
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
-for f in $OTHER/*.zsh; do
-  if [ -f $f ]; then
-    source $f
-  fi
-done
-
+if [ "$(uname)" = "Darwin" ]; then
+  export GPG_TTY=$(tty)
+fi
 
 # configure completion
 zstyle ':completion:*:*:*:*:*' menu select
