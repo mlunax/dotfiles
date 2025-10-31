@@ -622,9 +622,9 @@ require("lazy").setup({
 			require("mason").setup()
 
 			-- NOTE: enable manual LSP loading
-			local lspconfig = require("lspconfig")
-			lspconfig.tsserver.setup({})
-			lspconfig.pylsp.setup({})
+			local lsp = vim.lsp
+			lsp.enable('pylsp')
+			lsp.enable('tsserver')
 
 			-- You can add other tools here that you want Mason to install
 			-- for you, so that they are available from within Neovim.
