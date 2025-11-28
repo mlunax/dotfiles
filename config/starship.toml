@@ -2,6 +2,7 @@
 add_newline = true
 format = """
 $env_var\
+$nix_shell \
 $username\
 $hostname\
 $directory\
@@ -16,7 +17,9 @@ $python\
 $character"""
 
 right_format ="""
-$battery"""
+$localip
+$battery
+"""
 
 palette = "catppuccin_macchiato"
 
@@ -53,6 +56,18 @@ untracked = "[?${count}](cyan) "
 format = 'with [${symbol}${pyenv_prefix}($virtualenv )]($style)'
 detect_files = []
 detect_extensions = []
+
+[localip]
+ssh_only = false
+format = '@[$localipv4](bold red) '
+disabled = false
+
+[nix_shell]
+disabled = false
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = 'via [☃️ $state( \($name\))](bold blue) '
 
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
