@@ -37,6 +37,15 @@ else
 	plugins="$HOME/.local/share/zsh-plugins"
 fi
 
+## Colorize the ls output ##
+alias ls='ls --color=auto'
+
+## Use a long listing format ##
+alias ll='ls -la'
+
+## Show hidden files ##
+alias l.='ls -d .* --color=auto'
+
 # Load completions
 autoload -Uz compinit && compinit
 
