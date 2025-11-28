@@ -37,6 +37,15 @@ else
 	plugins="$HOME/.local/share/zsh-plugins"
 fi
 
+## Colorize the ls output ##
+alias ls='ls --color=auto'
+
+## Use a long listing format ##
+alias ll='ls -la'
+
+## Show hidden files ##
+alias l.='ls -d .* --color=auto'
+
 # Load completions
 autoload -Uz compinit && compinit
 
@@ -61,7 +70,7 @@ bindkey '^[w' kill-region
 
 if iscmd nvim; then
   export EDITOR=nvim
-else 
+else
   export EDITOR=vim
 fi
 
@@ -76,14 +85,15 @@ if ! iscmd docker && iscmd podman; then
 	alias c='podman-compose'
 fi
 
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
-for f in $OTHER/*.zsh; do
-  if [ -f $f ]; then
-    source $f
-  fi
-done
 
+if [ "$(uname)" = "Darwin" ]; then
+  export GPG_TTY=$(tty)
+  ssh-add --apple-load-keychain -q
+else
+    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+fi
 
 # configure completion
 zstyle ':completion:*:*:*:*:*' menu select
@@ -197,8 +207,8 @@ if iscmd go; then
   export GOPATH=$HOME/.local/go
 fi
 
-function atransfer () 
-{ 
+function atransfer ()
+{
     if [ $# -eq 0 ]; then
         echo "No arguments specified.\nUsage:\n transfer <file|directory>\n ... | transfer <file_name>" 1>&2;
         return 1;
@@ -224,6 +234,8 @@ function atransfer ()
 
 
 DISABLE_MAGIC_FUNCTIONS=true
-source $OTHER/func.zsh
 source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+
+#check-dotfiles-updates
