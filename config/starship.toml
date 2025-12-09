@@ -17,8 +17,7 @@ $python\
 $character"""
 
 right_format ="""
-$localip \
-${custom.public_ip} \
+$localip
 $battery
 """
 
@@ -27,12 +26,6 @@ palette = "catppuccin_macchiato"
 
 [[battery.display]] # 'bold red' style and discharging_symbol when capacity is between 0% and 10%
 threshold = 99
-
-[custom.public_ip]
-description = "Public IP"
-command = "cat ~/.public_ip_cache"
-when = "test -f ~/.public_ip_cache"
-style = "bold green"
 
 
 [env_var.CUSTOM_PROMPT_TAG]
