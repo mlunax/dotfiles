@@ -195,6 +195,12 @@ if iscmd fzf; then
   fi
 fi
 
+if iscmd mise; then
+  function actmise() {
+    eval "$(mise activate zsh)"
+  }
+fi
+
 if iscmd zoxide; then
   eval "$(zoxide init zsh)"
 fi
