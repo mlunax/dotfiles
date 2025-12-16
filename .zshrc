@@ -46,6 +46,10 @@ alias ll='ls -la'
 ## Show hidden files ##
 alias l.='ls -d .* --color=auto'
 
+#generate random things
+alias generatesecretpy='python3 -c "import secrets; print(secrets.token_urlsafe(32), end=\"\")"'
+alias generaterandomport='python3 -c "import random; print(random.randint(1000,65536), end=\"\")"'
+
 # Load completions
 autoload -Uz compinit && compinit
 
