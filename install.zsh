@@ -120,7 +120,7 @@ done
 
 echo
 echo "[*] installing config files"
-install -m644 .zshrc -t "$HOME"
+install -m644 .zshrc "$HOME"
 find config -type f | while read file; do
 	install $file $(echo $file | sed "s|config|$HOME/.config|")
 done
