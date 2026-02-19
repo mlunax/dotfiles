@@ -13,3 +13,4 @@ keybind = alt+0=unbind
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 keybind = alt+u=unbind
+macos-option-as-alt = true 
