@@ -46,6 +46,11 @@ alias ll='ls -la'
 ## Show hidden files ##
 alias l.='ls -d .* --color=auto'
 
+#nix aliases
+alias 'darwin-rb'='darwin-rebuild switch --flake ~/Documents/dotfiles_macos'
+
+alias sudo='sudo '
+
 #generate random things
 alias generatesecretpy='python3 -c "import secrets; print(secrets.token_urlsafe(32), end=\"\")"'
 alias generaterandomport='python3 -c "import random; print(random.randint(1000,65536), end=\"\")"'
