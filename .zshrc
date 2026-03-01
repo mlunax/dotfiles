@@ -55,6 +55,10 @@ alias sudo='sudo '
 alias generatesecretpy='python3 -c "import secrets; print(secrets.token_urlsafe(32), end=\"\")"'
 alias generaterandomport='python3 -c "import random; print(random.randint(1000,65536), end=\"\")"'
 
+# git aliases
+alias gp='git push'
+
+
 # Load completions
 autoload -Uz compinit && compinit
 
