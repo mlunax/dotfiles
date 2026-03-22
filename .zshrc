@@ -81,6 +81,13 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 
+if [ "$(uname)" = "Darwin" ]; then
+  export GPG_TTY=$(tty)
+  ssh-add --apple-load-keychain -q
+else
+    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+fi
+
 if iscmd nvim; then
   export EDITOR=nvim
 else
@@ -103,12 +110,6 @@ fi
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
 
-if [ "$(uname)" = "Darwin" ]; then
-  export GPG_TTY=$(tty)
-  ssh-add --apple-load-keychain -q
-else
-    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
-fi
 
 # configure completion
 zstyle ':completion:*:*:*:*:*' menu select
