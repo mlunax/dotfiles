@@ -148,9 +148,9 @@ if [ -d "$HOME"/.oh-my-zsh ]; then
 	rm -rf "$HOME"/.oh-my-zsh
 fi
 
-# if [ -d "$HOME"/.zsh ]; then
-# 	echo "[*] cleaning up .zsh"
-# 	rm -rf "$HOME"/.zsh
-# fi
+if [ -d "$HOME"/.zsh ]; then
+	echo "[*] cleaning up .zsh"
+	rm -rf "$HOME"/.zsh
+fi
 
 exec zsh
