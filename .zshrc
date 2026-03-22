@@ -86,7 +86,9 @@ if iscmd nvim; then
 else
   export EDITOR=vim
 fi
-
+if iscmd neovide; then
+  alias neovide='neovide --fork'
+fi
 alias c='docker-compose'
 
 if ! iscmd docker-compose; then
@@ -257,4 +259,3 @@ source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 
-#check-dotfiles-updates
