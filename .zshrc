@@ -231,7 +231,10 @@ fi
 
 
 DISABLE_MAGIC_FUNCTIONS=true
-source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[ -f "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[ -f "$plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# Load completions
+autoload -Uz compinit && compinit
 
 
