@@ -1,262 +1,95 @@
-DISABLE_AUTO_UPDATE=true
-
-iscmd() {
-	command -v "$1" > /dev/null
-}
+# --- 1. Fast Command Checking ---
+# Replaces 'iscmd' with a zsh-native check that doesn't fork a process
+iscmd() { (( $+commands[$1] )) }
 
 export TERM="xterm-256color"
 export OTHER=$HOME/.zsh
 export ZSH=$HOME/.oh-my-zsh
+export DISABLE_AUTO_UPDATE=true
 
-__ptrc_prompt() {
-	local c_green=$'%{\x1b[32m%}'
-	local c_blue=$'%{\x1b[34m%}'
-	local c_reset=$'%{\x1b[0m%}'
-	local c_red=$'%{\x1b[31m%}'
-	local c_cyan=$'%{\x1b[36m%}'
-
-	if [ "$SSH_TTY" ]; then
-		local hostprefix="${c_red}${USER}${c_reset}@${c_cyan}${HOST} "
-	else
-		local hostprefix=""
-	fi
-
-	echo "${hostprefix}${c_blue}%~ ${c_green}>$c_reset "
-}
-
+# --- 2. Optimized Prompt ---
 if iscmd starship; then
-	source <(starship init zsh --print-full-init)
+    # Cache starship init to a file if it feels slow, 
+    # but --print-full-init is generally okay.
+    source <(starship init zsh --print-full-init)
 else
-	setopt promptsubst
-	export PS1='$(__ptrc_prompt)'
+    setopt promptsubst
+    __ptrc_prompt() {
+        local c_green=$'%{\x1b[32m%}' c_blue=$'%{\x1b[34m%}' c_reset=$'%{\x1b[0m%}'
+        local c_red=$'%{\x1b[31m%}' c_cyan=$'%{\x1b[36m%}'
+        local hostprefix=""
+        [[ -n "$SSH_TTY" ]] && hostprefix="${c_red}${USER}${c_reset}@${c_cyan}${HOST} "
+        echo "${hostprefix}${c_blue}%~ ${c_green}>$c_reset "
+    }
+    export PS1='$(__ptrc_prompt)'
 fi
 
-if [ -d /usr/share/zsh/plugins ] && [ -d /usr/share/zsh/plugins/zsh-autosuggestions ]; then
-	plugins="/usr/share/zsh/plugins"
-else
-	plugins="$HOME/.local/share/zsh-plugins"
-fi
+# --- 3. Path & Environment ---
+typeset -U path # Ensure PATH only has unique entries
+path=("$HOME/.local/bin" $path)
+[[ -d "$HOME/.local/go" ]] && export GOPATH=$HOME/.local/go
 
-## Colorize the ls output ##
-alias ls='ls --color=auto'
-
-## Use a long listing format ##
-alias ll='ls -la'
-
-## Show hidden files ##
-alias l.='ls -d .* --color=auto'
-
-#nix aliases
-alias 'darwin-rb'='darwin-rebuild switch --flake ~/Documents/dotfiles_macos'
-
-alias sudo='sudo '
-
-#generate random things
-alias generatesecretpy='python3 -c "import secrets; print(secrets.token_urlsafe(32), end=\"\")"'
-alias generaterandomport='python3 -c "import random; print(random.randint(1000,65536), end=\"\")"'
-
-# git aliases
-alias gp='git push'
-
-
-# Load completions
-autoload -Uz compinit && compinit
-
-## History file configuration
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=50000000
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-
-## History command configuration
-setopt extended_history       # record timestamp of command in HISTFILE
-setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_ignore_dups       # ignore duplicated commands history list
-setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify            # show command with history expansion to user before running it
-setopt appendhistory
-setopt sharehistory
-
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey '^[w' kill-region
-
-if [ "$(uname)" = "Darwin" ]; then
-  export GPG_TTY=$(tty)
-  ssh-add --apple-load-keychain -q
+if [[ "$(uname)" == "Darwin" ]]; then
+    export GPG_TTY=$(tty)
+    # Note: ssh-add can be slow; consider moving to a lazy load if needed
+    ssh-add --apple-load-keychain -q 2>/dev/null
+    
+    # Podman Optimization
+    if [[ -x "/opt/podman/bin/podman" ]]; then
+        path=("/opt/podman/bin" $path)
+    fi
 else
     export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 fi
 
-if iscmd nvim; then
-  export EDITOR=nvim
+# --- 4. Completion Engine (Run once, run fast) ---
+# Check if cache needs rebuilding (every 24h) or use a static file
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m-1) ]]; then
+  compinit -C
 else
-  export EDITOR=vim
+  compinit
 fi
-if iscmd neovide; then
-  alias neovide='neovide --fork'
+
+# Podman Completion (Static Check)
+if iscmd podman; then
+    if [[ -f "$HOME/.zsh/completions/_podman" ]]; then
+        fpath=($HOME/.zsh/completions $fpath)
+    else
+        # Only eval if we absolutely have to
+        eval "$(podman completion zsh)"
+    fi
 fi
+
+# --- 5. External Tool Inits (The Lag Makers) ---
+# Use static sourcing where possible
+iscmd zoxide && eval "$(zoxide init zsh)"
+iscmd fzf && source <(fzf --zsh)
+
+# Mise: Do not activate on every shell load if you don't need it immediately
+# Use your 'actmise' function or only eval if a local config exists
+if iscmd mise; then
+    actmise() { eval "$(mise activate zsh)" }
+fi
+
+# --- 6. Aliases & Functions ---
+alias ls='ls --color=auto'
+alias ll='ls -la'
+alias l.='ls -d .* --color=auto'
+alias gp='git push'
+alias sudo='sudo '
 alias c='docker-compose'
 
-if ! iscmd docker-compose; then
-	alias c='docker compose'
-fi
-
+# Smart Docker/Podman Aliasing
+if ! iscmd docker-compose; then alias c='docker compose'; fi
 if ! iscmd docker && iscmd podman; then
-	alias docker='podman'
-	alias c='podman-compose'
+    alias docker='podman'
+    alias c='podman-compose'
 fi
 
-[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+# --- 7. Plugins ---
+# Load these last to ensure they don't slow down the UI rendering
+[[ -d /usr/share/zsh/plugins ]] && p_dir="/usr/share/zsh/plugins" || p_dir="$HOME/.local/share/zsh-plugins"
 
-
-
-# configure completion
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
-zstyle ':completion:*:*:*:*:processes' command "ps -u $USERNAME -o pid,user,comm -w -w"
-zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' cache-path "$HOME/.cache/zsh"
-
-# https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/key-bindings.zsh
-
-# Make sure that the terminal is in application mode when zle is active, since
-# only then values from $terminfo are valid
-if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
-  zle-line-init() {
-    echoti smkx
-  }
-  zle-line-finish() {
-    echoti rmkx
-  }
-  zle -N zle-line-init
-  zle -N zle-line-finish
-fi
-
-# Use emacs key bindings
-bindkey -e
-
-# Start typing + [Up-Arrow] - fuzzy find history forward
-if [[ -n "${terminfo[kcuu1]}" ]]; then
-  autoload -U up-line-or-beginning-search
-  zle -N up-line-or-beginning-search
-
-  bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
-fi
-# Start typing + [Down-Arrow] - fuzzy find history backward
-if [[ -n "${terminfo[kcud1]}" ]]; then
-  autoload -U down-line-or-beginning-search
-  zle -N down-line-or-beginning-search
-
-  bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
-fi
-
-# [Home] - Go to beginning of line
-if [[ -n "${terminfo[khome]}" ]]; then
-  bindkey "${terminfo[khome]}" beginning-of-line
-fi
-# [End] - Go to end of line
-if [[ -n "${terminfo[kend]}" ]]; then
-  bindkey "${terminfo[kend]}"  end-of-line
-fi
-
-# [Shift-Tab] - move through the completion menu backwards
-if [[ -n "${terminfo[kcbt]}" ]]; then
-  bindkey "${terminfo[kcbt]}" reverse-menu-complete
-fi
-
-# [Delete] - delete forward
-if [[ -n "${terminfo[kdch1]}" ]]; then
-  bindkey "${terminfo[kdch1]}" delete-char
-else
-  bindkey "^[[3~" delete-char
-  bindkey "^[3;5~" delete-char
-fi
-
-# [Ctrl-RightArrow] - move forward one word
-bindkey '^[[1;5C' forward-word
-# [Ctrl-LeftArrow] - move backward one word
-bindkey '^[[1;5D' backward-word
-
-# Enable Ctrl-x-e to edit command line
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '^xe' edit-command-line
-
-if iscmd fzf; then
-  source <(fzf --zsh);
-  export FZF_COMPLETION_OPTS='--border --info=inline --reverse'
-  export FZF_CTRL_R_OPTS="
-  --preview 'echo {}' --preview-window up:3:hidden:wrap
-  --bind 'ctrl-/:toggle-preview'
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
-  --color header:italic
-  --header 'Press CTRL-Y to copy command into clipboard'"
-  # Preview file content using bat (https://github.com/sharkdp/bat)
-  export FZF_CTRL_T_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'bat -n --color=always {}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-  # Print tree structure in the preview window
-  export FZF_ALT_C_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'tree -C {}'"
-  if iscmd fd; then
-    _fzf_compgen_path() {
-      fd --hidden --follow --exclude ".git" . "$1"
-    }
-  fi
-fi
-
-if iscmd mise; then
-  function actmise() {
-    eval "$(mise activate zsh)"
-  }
-fi
-
-if iscmd zoxide; then
-  eval "$(zoxide init zsh)"
-fi
-
-if iscmd tldr; then
-  alias tldrf='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
-fi
-
-if iscmd go; then
-  export GOPATH=$HOME/.local/go
-fi
-
-function atransfer ()
-{
-    if [ $# -eq 0 ]; then
-        echo "No arguments specified.\nUsage:\n transfer <file|directory>\n ... | transfer <file_name>" 1>&2;
-        return 1;
-    fi;
-    if tty -s; then
-        file="$1";
-        file_name=$(basename "$file");
-        if [ ! -e "$file" ]; then
-            echo "$file: No such file or directory" 1>&2;
-            return 1;
-        fi;
-        if [ -d "$file" ]; then
-            file_name="$file_name.zip" ,;
-            ( cd "$file" && zip -r -q - . ) | curl --progress-bar --upload-file "-" "https://transfer.archivete.am/$file_name" | tee /dev/null,;
-        else
-            cat "$file" | curl --progress-bar --upload-file "-" "https://transfer.archivete.am/$file_name" | tee /dev/null;
-        fi;
-    else
-        file_name=$1;
-        curl --progress-bar --upload-file "-" "https://transfer.archivete.am/$file_name" | tee /dev/null;
-    fi
-}
-
-
-DISABLE_MAGIC_FUNCTIONS=true
-source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-
+source "$p_dir/zsh-autosuggestions/zsh-autosuggestions.zsh" 2>/dev/null
+source "$p_dir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" 2>/dev/null
