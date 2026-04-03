@@ -81,11 +81,12 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 
-if [ "$(uname)" = "Darwin" ]; then
-  export GPG_TTY=$(tty)
-  ssh-add --apple-load-keychain -q
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export GPG_TTY=$TTY
+  ssh-add -l >/dev/null 2>&1 || ssh-add --apple-load-keychain -q
 else
-    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 fi
 
 if iscmd nvim; then
@@ -236,5 +237,3 @@ DISABLE_MAGIC_FUNCTIONS=true
 
 # Load completions
 autoload -Uz compinit && compinit
-
-
