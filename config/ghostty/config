@@ -13,4 +13,7 @@ keybind = alt+0=unbind
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 keybind = alt+u=unbind
-macos-option-as-alt = true 
+macos-option-as-alt = true
+window-save-state = always
+shell-integration = detect
+shell-integration-features = no-sudo,cursor,title
