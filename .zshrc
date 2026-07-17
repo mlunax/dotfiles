@@ -60,6 +60,7 @@ alias generaterandomport='python3 -c "import random; print(random.randint(1000,6
 # git aliases
 alias gp='git push'
 
+alias cdtemp='cd $(mktemp -d)'
 
 # Load completions
 autoload -Uz compinit && compinit
