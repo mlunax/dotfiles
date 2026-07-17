@@ -40,6 +40,8 @@ fi
 ## Colorize the ls output ##
 alias ls='ls --color=auto'
 
+alias lst='ls -lat'
+
 ## Use a long listing format ##
 alias ll='ls -la'
 
