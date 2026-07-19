@@ -240,3 +240,5 @@ DISABLE_MAGIC_FUNCTIONS=true
 
 # Load completions
 autoload -Uz compinit && compinit
+
+[[ -f ~/.config/zsh/opencode-completion.zsh ]] && source ~/.config/zsh/opencode-completion.zsh
