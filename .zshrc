@@ -65,6 +65,8 @@ alias cdtemp='cd $(mktemp -d)'
 # Load completions
 autoload -Uz compinit && compinit
 
+alias run_arrpc='nix-shell --run "npx arrpc" -p nodejs'
+
 ## History file configuration
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000000
