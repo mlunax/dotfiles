@@ -7,6 +7,15 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent_servers": {
+    "opencode.local": {
+      "type": "custom",
+      "command": "opencode",
+      "args": [
+        "acp"
+      ]
+    }
+  },
   "cli_default_open_behavior": "existing_window",
   "project_panel": {
     "dock": "left"
@@ -49,24 +58,13 @@
         }
       ]
     },
-    {
-      "host": "tobitai.tsukimiko.net",
-      "args": [],
-      "projects": [
-        {
-          "paths": [
-            "/home/lunax"
-          ]
-        }
-      ]
-    }
   ],
   "languages": {
     "HTML": {
       "format_on_save": "off"
     }
   },
-  "disable_ai": true,
+  "disable_ai": false,
   "helix_mode": false,
   "auto_update": false,
   "vim_mode": true,
