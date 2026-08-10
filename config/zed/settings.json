@@ -9,6 +9,15 @@
 {
   "agent_servers": {
     "opencode.local": {
+      "favorite_config_option_values": {
+        "model": [
+          "moonshotai/kimi-k2.7-code"
+        ]
+      },
+      "default_config_options": {
+        "mode": "build",
+        "model": "moonshotai/kimi-k2.7-code"
+      },
       "type": "custom",
       "command": "opencode",
       "args": [
