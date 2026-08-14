@@ -49,7 +49,8 @@ alias ll='ls -la'
 alias l.='ls -d .* --color=auto'
 
 #nix aliases
-alias 'darwin-rb'="darwin-rebuild switch --flake ~/Documents/dotfiles_macos#$HOST"
+# alias 'darwin-rb'="darwin-rebuild switch --flake ~/Documents/dotfiles_macos#$HOST"
+alias 'darwin-rb'="darwin-rebuild switch --flake ~/Documents/dotfiles_macos"
 
 alias sudo='sudo '
 
