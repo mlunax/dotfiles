@@ -153,4 +153,10 @@ if [ -d "$HOME"/.zsh ]; then
 	rm -rf "$HOME"/.zsh
 fi
 
+# enable committed secret-scan pre-commit hook (if this is a git clone)
+if [ -d "$(dirname "$(readlink -f "$0" 2>/dev/null || echo "$0")")/.git" ]; then
+	echo "[*] enabling pre-commit hooks for dotfiles repo"
+	git config core.hooksPath .githooks
+fi
+
 exec zsh

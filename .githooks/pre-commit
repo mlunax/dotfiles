@@ -1,0 +1,46 @@
+#!/bin/zsh
+# Secret-scan pre-commit hook.
+# Runs gitleaks + trufflehog over staged changes and blocks the commit if any
+# potential secret is found. Fails closed: if a scanner is missing the commit
+# is blocked with a clear message.
+
+set -e
+
+msg() { printf '%s\n' "[secret-scan] $*" >&2; }
+die() { printf '%s\n' "[secret-scan] ERROR: $*" >&2; exit 1; }
+
+# Fail closed: both tools must be present.
+for tool in gitleaks trufflehog; do
+    command -v "$tool" >/dev/null 2>&1 || die "'$tool' not found. Install it (brew install $tool) to commit."
+done
+
+# Confirm this is really being run from a git work tree.
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 || die "not in a git work tree"
+
+fail=0
+
+# 1) gitleaks on staged changes (purpose-built staged scanner)
+if ! gitleaks protect --staged --verbose --no-banner; then
+    msg "gitleaks found a potential secret in staged changes."
+    fail=1
+fi
+
+# 2) trufflehog: scan the staged file contents via a temporary index-based scan.
+#    We scan the index (staged) state, which captures exactly what would be committed.
+# Materialize the staged (index) content into a temp dir so trufflehog only
+# sees exactly what is about to be committed.
+tmpdir="$(mktemp -d)"
+trap 'rm -rf "$tmpdir"' EXIT
+repo_top="$(git rev-parse --show-toplevel)"
+( cd "$tmpdir" && git --git-dir="$repo_top/.git" checkout-index --all --prefix="$tmpdir/" >/dev/null 2>&1 )
+
+if ! trufflehog filesystem --no-update --json "$tmpdir" >/dev/null 2>&1; then
+    msg "trufflehog found a potential secret in staged changes."
+    fail=1
+fi
+
+if [ "$fail" -ne 0 ]; then
+    die "commit blocked due to potential secrets. Review the findings above, then re-stage and commit."
+fi
+
+exit 0
