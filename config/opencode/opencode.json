@@ -14,15 +14,6 @@
     }
   },
   "mcp": {
-    "headroom": {
-      "type": "local",
-      "command": [
-        "headroom",
-        "mcp",
-        "serve"
-      ],
-      "enabled": true
-    },
     "serena": {
       "type": "local",
       "command": [
@@ -38,6 +29,28 @@
         "False"
       ],
       "enabled": true
+    },
+    "headroom": {
+      "type": "local",
+      "command": [
+        "headroom",
+        "mcp",
+        "serve"
+      ],
+      "enabled": true
+    }
+  },
+  "disabled_providers": [
+    "headroom",
+    "nano-gpt",
+    "openrouter"
+  ],
+  "provider": {
+    "opencode-go": {
+      "whitelist": [
+        "glm-5.3-flash",
+        "deepseek-v4.1-flash"
+      ]
     }
   }
 }
