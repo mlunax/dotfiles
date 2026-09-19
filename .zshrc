@@ -91,6 +91,8 @@ bindkey '^[w' kill-region
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export GPG_TTY=$TTY
   ssh-add -l >/dev/null 2>&1 || ssh-add --apple-load-keychain -q
+
+  alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 else
   export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 fi
