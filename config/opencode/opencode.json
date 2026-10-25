@@ -48,8 +48,10 @@
   "provider": {
     "opencode-go": {
       "whitelist": [
+        "gpt-6-luna",
         "glm-5.3-flash",
-        "deepseek-v4.1-flash"
+        "kimi-k3",
+        "kimi-k2.7-code"
       ]
     }
   }
