@@ -1,58 +1,70 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "permission": {
-    "read": {
-      "*.env": "deny",
-      "*.env.*": "deny"
-    },
-    "bash": {
-      "git commit *": "deny",
-      "git push *": "deny",
-      "ssh *": "ask",
-      "scp *": "ask",
-      "rsync *": "ask"
-    }
-  },
-  "mcp": {
-    "serena": {
-      "type": "local",
-      "command": [
-        "uvx",
-        "--from",
-        "serena-agent",
-        "serena",
-        "start-mcp-server",
-        "--project-from-cwd",
-        "--context",
-        "agent",
-        "--open-web-dashboard",
-        "False"
-      ],
-      "enabled": true
-    },
-    "headroom": {
-      "type": "local",
-      "command": [
-        "headroom",
-        "mcp",
-        "serve"
-      ],
-      "enabled": true
-    }
-  },
-  "disabled_providers": [
-    "headroom",
-    "nano-gpt",
-    "openrouter"
+  "permissions": [
+    { "action": "external_directory", "resource": "*", "effect": "ask" },
+    { "action": "read", "resource": "*.env", "effect": "deny" },
+    { "action": "read", "resource": "*.env.*", "effect": "deny" },
+    { "action": "shell", "resource": "git commit *", "effect": "deny" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "shell", "resource": "ssh *", "effect": "ask" },
+    { "action": "shell", "resource": "scp *", "effect": "ask" },
+    { "action": "shell", "resource": "rsync *", "effect": "ask" }
   ],
-  "provider": {
-    "opencode-go": {
-      "whitelist": [
-        "gpt-6-luna",
-        "glm-5.3-flash",
-        "kimi-k3",
-        "kimi-k2.7-code"
-      ]
+  "mcp": {
+    "servers": {
+      "serena": {
+        "type": "local",
+        "command": [
+          "uvx",
+          "--from",
+          "serena-agent",
+          "serena",
+          "start-mcp-server",
+          "--project-from-cwd",
+          "--context",
+          "agent",
+          "--open-web-dashboard",
+          "False"
+        ]
+      },
+      "headroom": {
+        "type": "local",
+        "command": [
+          "headroom",
+          "mcp",
+          "serve"
+        ]
+      }
+    }
+  },
+  "policies": [
+    { "action": "provider.use", "resource": "headroom", "effect": "deny" },
+    { "action": "provider.use", "resource": "nano-gpt", "effect": "deny" },
+    { "action": "provider.use", "resource": "openrouter", "effect": "deny" }
+  ],
+  "providers": {
+    "headroom": {
+      "name": "Headroom Proxy",
+      "package": "aisdk:@ai-sdk/openai-compatible",
+      "settings": {
+        "baseURL": "http://127.0.0.1:8787/v1"
+      },
+      "models": {
+        "gpt-4o": {
+          "name": "GPT-4o",
+          "limit": {
+            "context": 128000,
+            "output": 16384
+          }
+        },
+        "gpt-4.1": {
+          "name": "GPT-4.1",
+          "limit": {
+            "context": 1048576,
+            "output": 32768
+          }
+        }
+      }
     }
   }
 }
